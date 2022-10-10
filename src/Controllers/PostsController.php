@@ -2,18 +2,25 @@
 
 namespace App\Controllers;
 
+use App\DB;
+use App\Models\Post;
+use App\Models\User;
 use PDO;
+use stdClass;
 
 class PostsController {
 
     public function index(){
-        $db = new PDO('sqlite:database.sqlite');
-        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $statement = $db->prepare('SELECT * FROM posts;');
-        $statement->execute();
-        //$statement->setFetchMode(PDO::FETCH_ASSOC);
-        $results = $statement->fetchAll(PDO::FETCH_ASSOC);
-        var_dump($results);
+        $posts = Post::all();
+        view('posts/index', compact('posts'));
     }
 
+    public function create(){
+        view('posts/create');
+    }
+
+    public function store(){
+        var_dump($_GET);
+        var_dump($_POST);
+    }
 }
