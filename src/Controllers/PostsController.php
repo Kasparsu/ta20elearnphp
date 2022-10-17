@@ -12,6 +12,7 @@ class PostsController {
 
     public function index(){
         $posts = Post::all();
+        
         view('posts/index', compact('posts'));
     }
 
@@ -20,7 +21,23 @@ class PostsController {
     }
 
     public function store(){
-        var_dump($_GET);
-        var_dump($_POST);
+        $post = new Post();
+        $post->title = $_POST['title'];
+        $post->body = $_POST['body'];
+        $post->save();
+        header('Location: /posts');
+    }
+
+    public function edit(){
+        $post = Post::find($_GET['id']);
+        if($post){
+            view('posts/edit', compact('post'));
+        } else {
+            echo 404;
+        }
+    }
+
+    public function update(){
+        
     }
 }

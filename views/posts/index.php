@@ -25,9 +25,9 @@
                                 </button>
                             </p>
                             <p class="control">
-                                <button class="button is-warning">
+                                <a class="button is-warning" href="/posts/edit?id=<?=$post->id?>">
                                     <span>Edit</span>
-                                </button>
+                                </a>
                             </p>
                             <p class="control">
                                 <button class="button is-danger">
