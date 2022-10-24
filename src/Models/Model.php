@@ -36,8 +36,18 @@ abstract class Model {
     }
     public function save(){
         $db = new DB();
+        $this->updated_at = time() . '000';
         $fields = get_object_vars($this);
         unset($fields['id']);
-        return $db->insert(static::$table, $fields);
+        if(isset($this->id)){
+            $db->update(static::$table, $fields, $this->id);
+        } else {
+            $db->insert(static::$table, $fields);
+        }
+    }
+
+    public function delete(){
+        $db = new DB();
+        $db->delete(static::$table, $this->id);
     }
 }

@@ -38,6 +38,24 @@ class PostsController {
     }
 
     public function update(){
-        
+        $post = Post::find($_GET['id']);
+        if($post){
+            $post->title = $_POST['title'];
+            $post->body = $_POST['body'];
+            $post->save();
+            header('Location: /posts');
+        } else {
+            echo 404;
+        }
+    }
+    
+    public function destroy(){
+        $post = Post::find($_GET['id']);
+        if($post){
+            $post->delete();
+            header('Location: /posts');
+        } else {
+            echo 404;
+        }
     }
 }

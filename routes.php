@@ -12,3 +12,4 @@ Router::get('/posts/new', [PostsController::class, 'create']);
 Router::post('/posts', [PostsController::class, 'store']);
 Router::get('/posts/edit', [PostsController::class, 'edit']);
 Router::post('/posts/edit', [PostsController::class, 'update']);
+Router::get('/posts/delete', [PostsController::class, 'destroy']);

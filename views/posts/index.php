@@ -30,9 +30,9 @@
                                 </a>
                             </p>
                             <p class="control">
-                                <button class="button is-danger">
+                                <a class="button is-danger" href="/posts/delete?id=<?=$post->id?>">
                                     <span>Delete</span>
-                                </button>
+                                </a>
                             </p>
                         </div>
                     </td>

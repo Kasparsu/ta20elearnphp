@@ -42,4 +42,33 @@ class DB {
         // use exec() because no results are returned
         $this->conn->exec($sql);
     }
+
+    public function update($table, $fields, $id){
+
+        foreach($fields as &$field){
+            if(is_object($field) && get_class($field) == 'DateTime'){
+                $field = $field->getTimestamp() * 1000; // mstime
+            }
+        }
+
+        $fieldValuesText = '';
+        foreach($fields as $name=>$value){
+            $fieldValuesText .= $name . "='" . $value . "',";
+        }
+        
+        $fieldNamesText = substr($fieldValuesText, 0, -1);
+        $sql = "UPDATE $table SET $fieldNamesText WHERE id=$id";
+        // Prepare statement
+        $stmt = $this->conn->prepare($sql);
+
+        // execute the query
+        $stmt->execute();
+    }
+
+    public function delete($table, $id){
+        $sql = "DELETE FROM $table WHERE id=$id";
+
+        // use exec() because no results are returned
+        $this->conn->exec($sql);
+    }
 }
