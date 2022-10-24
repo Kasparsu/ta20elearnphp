@@ -27,6 +27,13 @@ class DB {
         return $statement->fetch();
     }
 
+    public function where($table, $model, $fieldName, $fieldValue){
+        $statement = $this->conn->prepare("SELECT * FROM $table WHERE $fieldName='$fieldValue';");
+        $statement->execute();
+        //$statement->setFetchMode(PDO::FETCH_ASSOC);
+        return $statement->fetchAll(PDO::FETCH_CLASS, $model);
+    }
+
     public function insert($table, $fields){
         $fieldNames = array_keys($fields);
         $fieldNamesText = implode(',', $fieldNames);

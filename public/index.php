@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 //var_dump($_SERVER['REQUEST_URI']);
 spl_autoload_register(function($className){

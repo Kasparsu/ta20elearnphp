@@ -50,4 +50,9 @@ abstract class Model {
         $db = new DB();
         $db->delete(static::$table, $this->id);
     }
+
+    public static function where($fieldName, $fieldValue){
+       $db = new DB();
+       return $db->where(static::$table, static::class, $fieldName, $fieldValue);
+    }
 }

@@ -26,12 +26,26 @@
     <div class="navbar-end">
       <div class="navbar-item">
         <div class="buttons">
-          <a class="button is-primary">
-            <strong>Sign up</strong>
-          </a>
-          <a class="button is-light">
-            Log in
-          </a>
+          <?php if(auth()): ?>
+            <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link">
+                <?=auth()->email?>
+              </a>
+              <div class="navbar-dropdown">
+                <a href="/logout" class="navbar-item">
+                  Logout
+                </a>
+              </div>
+            </div>
+
+          <?php else: ?>
+            <a href="/register" class="button is-primary">
+              <strong>Sign up</strong>
+            </a>
+            <a href="/login" class="button is-light">
+              Log in
+            </a>
+          <?php endif; ?>
         </div>
       </div>
     </div>
