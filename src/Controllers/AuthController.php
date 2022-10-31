@@ -36,4 +36,9 @@ class AuthController {
             header('Location: /login');
         }
     }
+
+    public function logout(){
+        unset($_SESSION['id']);
+        header('Location: /');
+    }
 }
