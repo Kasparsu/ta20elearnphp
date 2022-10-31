@@ -12,7 +12,7 @@ class PostsController {
 
     public function index(){
         $posts = Post::all();
-        
+        dd($posts);
         view('posts/index', compact('posts'));
     }
 
